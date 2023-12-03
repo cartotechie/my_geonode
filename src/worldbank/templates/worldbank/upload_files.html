@@ -1,0 +1,15 @@
+ <h1>Upload Files</h1>
+
+  {% for file in files %}
+    <div class="file-info">
+      <p>File user: {{ file.user }}</p>
+      <p>File key: {{ file.pk }}</p>
+      <p>File name: {{ file.name }}</p>
+      <p>File upload dir: {{ file.upload_dir }}</p>
+      <a href="{% url 'file-detail' file.pk %}">File Info</a>
+      <form method="GET" action="{% url 'file-detail' file.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="submit-button">Use data to create Dashboard</button>
+      </form>
+    </div>
+  {% endfor %}

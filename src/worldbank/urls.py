@@ -9,7 +9,7 @@ from django.conf.urls import url,include
 from geonode.api.urls import router
 from django.urls import path
 from .views import GeoJSONAPIView
-from .views import mapView ,geojsonapi
+from .views import mapView ,geojsonapi,upload_files
 
 #router.register(r'mapView')
 
@@ -17,5 +17,6 @@ urlpatterns = [
    url('dashboard/', mapView, name='dashboard'),
    url('geojsonapi/',geojsonapi,name='geojsonapi'),
    path('geojsonapi_view/', GeoJSONAPIView.as_view(), name='geojsonapi'),
+   url('files/',upload_files,name='upload-files'),
    
 ]

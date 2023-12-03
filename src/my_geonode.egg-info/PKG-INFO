@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: my-geonode
+Version: 4.0.0
+Summary: my_geonode, based on GeoNode
+Home-page: https://github.com/my_geonode/my_geonode
+Author: 
+Author-email: 
+License: GPL
+Keywords: my_geonode geonode django
+Classifier: Development Status :: 1 - Planning
+
+# My_Geonode

@@ -1,11 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Risk Assessment Dashboard</title>
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -26,18 +26,37 @@
         }
 
         #map {
-            flex: 2;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            height: 80vh;
+            
+
         }
 
-        #risk-info {
+       #risk-info {
             flex: 1;
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        /*******************************************/
+        #attribute-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #attribute-table th, #attribute-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    #attribute-table th {
+      background-color: #f2f2f2;
+    }
+        /********************************************/
+
+        /**************************************/
 
         footer {
             background-color: #333;
@@ -48,6 +67,7 @@
             bottom: 0;
             width: 100%;
         }
+
     </style>
 </head>
 <body>
@@ -57,16 +77,47 @@
     </header>
 
     <section>
-        <div id="map">
-         
-        </div>
-
         <div id="risk-info">
-            <h2>Risk Information</h2>
+            <h2>Risk Information per Admin LeveL</h2>
             <p>Selected Location: <span id="selected-location">City ABC</span></p>
             <p>Risk Level: <span id="risk-level">High</span></p>
             <!-- Additional risk information goes here -->
         </div>
+        <div id="risk-info">
+            <h2>Risk Information per Admin LeveL</h2>
+            <p>Selected Location: <span id="selected-location">City ABC</span></p>
+            <p>Risk Level: <span id="risk-level">High</span></p>
+            <!-- Additional risk information goes here -->
+        </div>
+        <div id="map" class="map"></div>
+       
+
+        <div id="risk-info">
+            <form id="provinces-form">
+                <label for="provinces">Division</label>
+                <select name="provinces" id="provinces" form="provinces-form">
+                  <option value="">--Please choose a Division--</option>
+                </select>
+                <input type="submit" value="Remove" id="provinces-btn">
+                </form>
+            </form>
+            <form id="municipalities-form">
+              <label for="municipalities">District</label>
+              <select name="municipalities" id="municipalities">
+                <option value="">--Please choose a District--</option>
+              </select>
+              <input type="submit" value="Remove" id="municipalities-btn">
+            </form> 
+            <div class="item3 dashboard-item">   
+                <div id="province-name"></div>
+                <div class="no-municipalities values">
+                 
+                  <div class="municipality" id="total-municipalities"></div>
+                  <span id="total-count"></span>
+                </div>
+            </div>
+        </div>
+         
     </section>
 
     <footer>
