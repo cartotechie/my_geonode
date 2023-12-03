@@ -1,2 +1,4 @@
 Django==3.2.*
+geopandas
+
 git+https://github.com/GeoNode/geonode.git@4.1.x#egg=GeoNode
