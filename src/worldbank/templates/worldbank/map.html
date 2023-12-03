@@ -71,23 +71,42 @@
     </style>
 </head>
 <body>
-
     <header>
         <h1>Risk Assessment Dashboard</h1>
     </header>
 
     <section>
-        <div id="risk-info">
-            <h2>Risk Information per Admin LeveL</h2>
-            <p>Selected Location: <span id="selected-location">City ABC</span></p>
-            <p>Risk Level: <span id="risk-level">High</span></p>
-            <!-- Additional risk information goes here -->
+        <div id="legend">
+            <h2>Legend</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+                <!-- Scale Background -->
+                <rect x="0" y="40" width="400" height="20" fill="#ddd" />
+            
+                <!-- Vulnerability Levels -->
+                <rect x="0" y="40" width="80" height="20" fill="#00ff00" />
+                <rect x="80" y="40" width="80" height="20" fill="#7fff00" />
+                <rect x="160" y="40" width="80" height="20" fill="#ffff00" />
+                <rect x="240" y="40" width="80" height="20" fill="#ffa500" />
+                <rect x="320" y="40" width="80" height="20" fill="#ff0000" />
+            
+                <!-- Labels -->
+                <text x="40" y="75" fill="#333" text-anchor="middle">Low</text>
+                <text x="120" y="75" fill="#333" text-anchor="middle">Moderate Low</text>
+                <text x="200" y="75" fill="#333" text-anchor="middle">Moderate</text>
+                <text x="280" y="75" fill="#333" text-anchor="middle">Moderate High</text>
+                <text x="360" y="75" fill="#333" text-anchor="middle">High</text>
+            </svg>
+            
         </div>
-        <div id="risk-info">
-            <h2>Risk Information per Admin LeveL</h2>
-            <p>Selected Location: <span id="selected-location">City ABC</span></p>
-            <p>Risk Level: <span id="risk-level">High</span></p>
-            <!-- Additional risk information goes here -->
+        <div id="statistics">
+            <div class="item3 dashboard-item">   
+                <div id="province-name"></div>
+                <div class="no-municipalities values">
+                 
+                  <div class="municipality" id="total-municipalities"></div>
+                  <span id="total-count"></span>
+                </div>
+            </div>
         </div>
         <div id="map" class="map"></div>
        
