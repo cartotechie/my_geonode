@@ -17,7 +17,10 @@ const defaultZoom = 7.8;
 // Function to create a Vector Layer from GeoJSON
 const createVectorLayer = (geoJSON, title,style) => {
     return new VectorLayer({
-      style:style,
+      style:function (feature) {
+        console.log(feature)
+        return style
+      },
       source: new VectorSource({
         features: new GeoJSON().readFeatures(geoJSON),
         
@@ -31,7 +34,7 @@ const createVectorLayer = (geoJSON, title,style) => {
     const osm = new LayerTile({
       title: 'OSM',
       type: 'base',
-      //visible: false,
+      visible: false,
       source: new OSM()
     });
   
