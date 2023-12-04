@@ -1,148 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Risk Assessment Dashboard</title>
-    <style>
-       body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        section {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        #map {
-            width: 50%;
-            height: 80vh;
-            
-
-        }
-
-       #risk-info {
-            flex: 1;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /*******************************************/
-        #attribute-table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    #attribute-table th, #attribute-table td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-
-    #attribute-table th {
-      background-color: #f2f2f2;
-    }
-        /********************************************/
-
-        /**************************************/
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'worldbank/css/map.css' %}"/>
 </head>
 <body>
-    <header>
-        <h1>Risk Assessment Dashboard</h1>
-    </header>
-
-    <section>
-        <div id="legend">
-            <h2>Legend</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
-                <!-- Scale Background -->
-                <rect x="0" y="40" width="400" height="20" fill="#ddd" />
-            
-                <!-- Vulnerability Levels -->
-                <rect x="0" y="40" width="80" height="20" fill="#00ff00" />
-                <rect x="80" y="40" width="80" height="20" fill="#7fff00" />
-                <rect x="160" y="40" width="80" height="20" fill="#ffff00" />
-                <rect x="240" y="40" width="80" height="20" fill="#ffa500" />
-                <rect x="320" y="40" width="80" height="20" fill="#ff0000" />
-            
-                <!-- Labels -->
-                <text x="40" y="75" fill="#333" text-anchor="middle">Low</text>
-                <text x="120" y="75" fill="#333" text-anchor="middle">Moderate Low</text>
-                <text x="200" y="75" fill="#333" text-anchor="middle">Moderate</text>
-                <text x="280" y="75" fill="#333" text-anchor="middle">Moderate High</text>
-                <text x="360" y="75" fill="#333" text-anchor="middle">High</text>
+  <div class="container">
+    <div class="header">
+      <h1>Risk Assessment Dashboard</h1>
+    </div>
+    <div class="footer"><p>&copy; 2023 Risk Assessment Dashboard</p></div>
+    <div class="map-container">
+      <div id="map" ></div>
+      <div id="info-box" class="info-box">
+        <!-- Content of the info box goes here -->
+      </div>
+    
+    </div>
+    <div class="map-symbology">   
+      <h2>Legend</h2>
+            <svg width="150" height="120">
+              <!-- Example Legend Items -->
+              <rect x="10" y="10" width="20" height="20" fill="#ff0000"/>
+              <text x="40" y="25" font-size="14" fill="#333">Category 1</text>
+          
+              <rect x="10" y="40" width="20" height="20" fill="#00ff00"/>
+              <text x="40" y="55" font-size="14" fill="#333">Category 2</text>
+          
+              <rect x="10" y="70" width="20" height="20" fill="#0000ff"/>
+              <text x="40" y="85" font-size="14" fill="#333">Category 3</text>
+              <!-- Add more legend items as needed -->
             </svg>
+  
+            <svg width="150" height="120">
+              <!-- Example Legend Items -->
+              <rect x="10" y="10" width="20" height="20" fill="#ff0000"/>
+              <text x="40" y="25" font-size="14" fill="#333">Category 1</text>
+          
+              <rect x="10" y="40" width="20" height="20" fill="#00ff00"/>
+              <text x="40" y="55" font-size="14" fill="#333">Category 2</text>
+          
+              <rect x="10" y="70" width="20" height="20" fill="#0000ff"/>
+              <text x="40" y="85" font-size="14" fill="#333">Category 3</text>
+              <!-- Add more legend items as needed -->
+            </svg>
+          </div>
+    <div class="Info1">
+      <h2>Division</h2>
+              <div class="item3 dashboard-item">
+                <div id="province-name">Sample Province</div>
+                <div class="no-municipalities values">
+                  <div class="municipality" id="total-municipalities">Natore District</div>
+                  <span id="total-count">150</span>
+                </div>
+              </div></div>
+    <div class="Info2"><h2>District</h2>
+              <div class="item3 dashboard-item">
+                <div id="province-name">Natore District</div>
+                <div class="no-municipalities values">
+                  <div class="municipality" id="total-municipalities">City A</div>
+                  <span id="total-count">150</span>
+                </div>
+              </div></div>
+    <div class="Info3"><h2>Upezillas</h2>
+              <div class="item3 dashboard-item">
+                <div id="province-name">Natore District</div>
+                <div class="no-municipalities values">
+                  <div class="municipality" id="total-municipalities">City A</div>
+                  <span id="total-count">150</span>
+                </div>
+              </div></div>
+    <div class="graph1"><!-- graph 1 -->
+          <div class="graph-container">
+            <canvas id="graph1" width="300" height="200"></canvas>
+          </div></div>
+    <div class="graph2"><!-- graph 1 -->
+          <div class="graph-container">
+            <canvas id="graph2" width="300" height="200"></canvas>
+          </div>
+    </div>
+    <div class="graph3"><!-- graph 1 -->
+          <div class="graph-container">
+            <canvas id="graph3" width="300" height="150"></canvas>
+          </div>
+    </div>
+    <div class="graph4"><!-- graph 4 -->
+        <div class="graph-container">
+          <canvas id="graph4" width="300" height="200"></canvas>
+        </div>
+  </div>
+    <div class="table"><h2>Select by Division</h2>
+              <!-- Your Risk Info Section Content  -->
+              <form id="provinces-form">
+                  <label for="provinces">Division</label>
+                  <select name="provinces" id="division" form="provinces-form">
+                    <option value="">--Please choose a Division--</option>
+                  </select>
+                  <input type="submit" value="Remove" id="provinces-btn">
+              </form>
+  
+              <form id="municipalities-form">
+                  <label for="municipalities">District</label>
+                  <select name="municipalities" id="district">
+                      <option value="">--Please choose a District--</option>
+                  </select>
+                  <input type="submit" value="Remove" id="municipalities-btn">
+              </form> 
             
-        </div>
-        <div id="statistics">
-            <div class="item3 dashboard-item">   
-                <div id="province-name"></div>
-                <div class="no-municipalities values">
-                 
-                  <div class="municipality" id="total-municipalities"></div>
-                  <span id="total-count"></span>
-                </div>
-            </div>
-        </div>
-        <div id="map" class="map"></div>
-       
+              <div class="container">
+                  <div class="cell">Column 1</div>
+                  <div class="cell">Column 2</div>
+                  <div class="cell">Column 3</div>
+                  <div class="cell">Column 4</div>
+  
+                  <!-- Add more rows as needed -->
+                  <div class="cell">Data 1</div>
+                  <div class="cell">Data 2</div>
+                  <div class="cell">Data 3</div>
+                  <div class="cell">Data 4</div>
 
-        <div id="risk-info">
-            <form id="provinces-form">
-                <label for="provinces">Division</label>
-                <select name="provinces" id="provinces" form="provinces-form">
-                  <option value="">--Please choose a Division--</option>
-                </select>
-                <input type="submit" value="Remove" id="provinces-btn">
-                </form>
-            </form>
-            <form id="municipalities-form">
-              <label for="municipalities">District</label>
-              <select name="municipalities" id="municipalities">
-                <option value="">--Please choose a District--</option>
-              </select>
-              <input type="submit" value="Remove" id="municipalities-btn">
-            </form> 
-            <div class="item3 dashboard-item">   
-                <div id="province-name"></div>
-                <div class="no-municipalities values">
-                 
-                  <div class="municipality" id="total-municipalities"></div>
-                  <span id="total-count"></span>
-                </div>
-            </div>
-        </div>
-         
-    </section>
+                  <!-- Add more rows as needed -->
+                  <div class="cell">Data 1</div>
+                  <div class="cell">Data 2</div>
+                  <div class="cell">Data 3</div>
+                  <div class="cell">Data 4</div>
 
-    <footer>
-        <p>&copy; 2023 Risk Assessment Dashboard</p>
-    </footer>
-    {% load static %}
+                  <!-- Add more rows as needed -->
+                  <div class="cell">Data 1</div>
+                  <div class="cell">Data 2</div>
+                  <div class="cell">Data 3</div>
+                  <div class="cell">Data 4</div>
+
+              </div>
+            </div>
+  </div>
+
+    
     <script src="{%  static 'worldbank/js/main.js' %}"></script>
 
   

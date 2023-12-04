@@ -34,7 +34,7 @@ const adminBoundaryStyle = new Style({
 
 // Style function for the polygon layer
 function getPolygonStyle(feature) {
-  console.log(feature);
+  //console.log(feature);
   // Extract attributes from the feature properties
 
   // Default style
