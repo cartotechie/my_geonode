@@ -10,15 +10,15 @@ import { bbox as bboxStrategy } from 'ol/loadingstrategy';
 import LayerSwitcher from 'ol-layerswitcher';
 import LayerTile from 'ol/layer/Tile';
 
-const defaultCenter = [ 92.08484286873286, 24.906870848845983];
-const defaultZoom = 14;
+const defaultCenter = [90, 24];
+const defaultZoom = 7.8;
 
 
 // Function to create a Vector Layer from GeoJSON
 const createVectorLayer = (geoJSON, title,style) => {
     return new VectorLayer({
       style:function (feature) {
-        
+        console.log(feature)
         return style
       },
       source: new VectorSource({
@@ -45,30 +45,16 @@ const createVectorLayer = (geoJSON, title,style) => {
         projection: 'EPSG:4326',
         center: defaultCenter,
         zoom: defaultZoom,
-        maxZoom:20
-      
       }),
     });
   
     const layerSwitcher = new LayerSwitcher({
       reverse: true,
-      groupSelectStyle: 'group',
-      tipLabel: 'Layers',
-      open: true,
+      groupSelectStyle: 'group'
     });
     map.addControl(layerSwitcher);
   
     return map;
   };
 
-  function createSubVectorLayer(source, style, title, visible) {
-    return new VectorLayer({
-      source: source,
-      style: style,
-      title: title,
-      visible: visible
-    });
-  }
-  
-
-  export {initMap,createVectorLayer,createSubVectorLayer}
+  export {initMap,createVectorLayer}

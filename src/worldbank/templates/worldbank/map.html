@@ -1,145 +1,196 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Risk Assessment Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'worldbank/css/map.css' %}"/>
+    
+    <link rel="stylesheet" href="{%  static 'worldbank/css/map.css' %}">
+    </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>Risk Assessment Dashboard</h1>
     </div>
-    <div class="footer"><p>&copy; 2023 Risk Assessment Dashboard</p></div>
+    <div class="table">
+      <h2>Select by Division</h2>
+                <!-- Your Risk Info Section Content  -->
+                <form id="provinces-form">
+                    <label for="provinces">Division</label>
+                    <select name="provinces" id="division" form="provinces-form">
+                      <option value="">--Please choose a Division--</option>
+                    </select>
+                    <!--input type="submit" value="Remove" id="provinces-btn"-->
+                </form>
+    
+                <form id="municipalities-form">
+                    <label for="municipalities">District</label>
+                    <select name="municipalities" id="district">
+                        <option value="">--Please choose a District--</option>
+                    </select>
+                    <!--input type="submit" value="Remove" id="municipalities-btn"-->
+                </form>
+      <div id="table">
+                   <!-- Ordered list with feature attributes -->
+                   <ol id="featureList">
+                  
+                  </ol>
+  
+                </div>
+      
+    </div>
     <div class="map-container">
-      <div id="map" ></div>
-      <div id="info-box" class="info-box">
-        <!-- Content of the info box goes here -->
-      </div>
-    
+       <div id="map" ></div>
+       <div id="info-box" class="info-box"></div>
     </div>
-    <div class="map-symbology">   
+    <div id="legend" class="map-symbology legend">
       <h2>Legend</h2>
-            <svg width="150" height="120">
-              <!-- Example Legend Items -->
-              <rect x="10" y="10" width="20" height="20" fill="#ff0000"/>
-              <text x="40" y="25" font-size="14" fill="#333">Category 1</text>
-          
-              <rect x="10" y="40" width="20" height="20" fill="#00ff00"/>
-              <text x="40" y="55" font-size="14" fill="#333">Category 2</text>
-          
-              <rect x="10" y="70" width="20" height="20" fill="#0000ff"/>
-              <text x="40" y="85" font-size="14" fill="#333">Category 3</text>
-              <!-- Add more legend items as needed -->
-            </svg>
+      
+    </div>
+    <!--div class="upezilla"><h2>Upazila</h2></div>
+    <div class="district"><h2>District</h2></div>
+    <div class="division"><h2>Division</h2></div>
+    <div class="classes"><h2>Classes</h2></div-->
+    <div class="charts-container">
+      <div>
+        <h3>Flood exposure</h3>
+        <p>Land Use / Land Cover Classifications are among the most iconic tasks for remote sensing scientists. They enable us to explore, map and monitor landscapes as well as better understand the impacts of for exampel natural hazards or anthropogenic influences.</p></div>
+       
   
-            <svg width="150" height="120">
-              <!-- Example Legend Items -->
-              <rect x="10" y="10" width="20" height="20" fill="#ff0000"/>
-              <text x="40" y="25" font-size="14" fill="#333">Category 1</text>
-          
-              <rect x="10" y="40" width="20" height="20" fill="#00ff00"/>
-              <text x="40" y="55" font-size="14" fill="#333">Category 2</text>
-          
-              <rect x="10" y="70" width="20" height="20" fill="#0000ff"/>
-              <text x="40" y="85" font-size="14" fill="#333">Category 3</text>
-              <!-- Add more legend items as needed -->
-            </svg>
-          </div>
-    <div class="Info1">
-      <h2>Division</h2>
-              <div class="item3 dashboard-item">
-                <div id="province-name">Sample Province</div>
-                <div class="no-municipalities values">
-                  <div class="municipality" id="total-municipalities">Natore District</div>
-                  <span id="total-count">150</span>
-                </div>
-              </div></div>
-    <div class="Info2"><h2>District</h2>
-              <div class="item3 dashboard-item">
-                <div id="province-name">Natore District</div>
-                <div class="no-municipalities values">
-                  <div class="municipality" id="total-municipalities">City A</div>
-                  <span id="total-count">150</span>
-                </div>
-              </div></div>
-    <div class="Info3"><h2>Upezillas</h2>
-              <div class="item3 dashboard-item">
-                <div id="province-name">Natore District</div>
-                <div class="no-municipalities values">
-                  <div class="municipality" id="total-municipalities">City A</div>
-                  <span id="total-count">150</span>
-                </div>
-              </div></div>
-    <div class="graph1"><!-- graph 1 -->
-          <div class="graph-container">
-            <canvas id="graph1" width="300" height="200"></canvas>
-          </div></div>
-    <div class="graph2"><!-- graph 1 -->
-          <div class="graph-container">
-            <canvas id="graph2" width="300" height="200"></canvas>
-          </div>
-    </div>
-    <div class="graph3"><!-- graph 1 -->
-          <div class="graph-container">
-            <canvas id="graph3" width="300" height="150"></canvas>
-          </div>
-    </div>
-    <div class="graph4"><!-- graph 4 -->
         <div class="graph-container">
-          <canvas id="graph4" width="300" height="200"></canvas>
+          <div class="div-name"></div>
+          <canvas id="graph_div_class"></canvas>
         </div>
-  </div>
-    <div class="table"><h2>Select by Division</h2>
-              <!-- Your Risk Info Section Content  -->
-              <form id="provinces-form">
-                  <label for="provinces">Division</label>
-                  <select name="provinces" id="division" form="provinces-form">
-                    <option value="">--Please choose a Division--</option>
-                  </select>
-                  <input type="submit" value="Remove" id="provinces-btn">
-              </form>
-  
-              <form id="municipalities-form">
-                  <label for="municipalities">District</label>
-                  <select name="municipalities" id="district">
-                      <option value="">--Please choose a District--</option>
-                  </select>
-                  <input type="submit" value="Remove" id="municipalities-btn">
-              </form> 
-            
-              <div class="container">
-                  <div class="cell">Column 1</div>
-                  <div class="cell">Column 2</div>
-                  <div class="cell">Column 3</div>
-                  <div class="cell">Column 4</div>
-  
-                  <!-- Add more rows as needed -->
-                  <div class="cell">Data 1</div>
-                  <div class="cell">Data 2</div>
-                  <div class="cell">Data 3</div>
-                  <div class="cell">Data 4</div>
-
-                  <!-- Add more rows as needed -->
-                  <div class="cell">Data 1</div>
-                  <div class="cell">Data 2</div>
-                  <div class="cell">Data 3</div>
-                  <div class="cell">Data 4</div>
-
-                  <!-- Add more rows as needed -->
-                  <div class="cell">Data 1</div>
-                  <div class="cell">Data 2</div>
-                  <div class="cell">Data 3</div>
-                  <div class="cell">Data 4</div>
-
-              </div>
+        <div class="graph-container">
+          <div class="dist-name"></div>
+          <canvas id="graph_dist_class"></canvas>
+        </div>
+        <div class="graph-container">
+          <div class="upazila-name"></div>
+          <canvas id="graph_upazila_class"></canvas>
+        </div>
+        
+        
+      <div>
+        <h3>LULC</h3>
+        <p>Land Use / Land Cover Classifications are among the most iconic tasks for remote sensing scientists. They enable us to explore, map and monitor landscapes as well as better understand the impacts of for exampel natural hazards or anthropogenic influences.</p></div>
+            <div class="graph-container">
+              <div class="div-name"></div>
+              <canvas id="graph_div_class_1"></canvas>
             </div>
-  </div>
+            <div class="graph-container">
+              <div class="dist-name"></div>
+              <canvas id="graph_dist_class_1"></canvas>
+            </div>
+            <div class="graph-container">
+              <div class="upazila-name"></div>
+              <canvas id="graph_upazila_class_1"></canvas>
+            </div>
 
-    
+      <div>
+        <h3>WindSpeed 100m</h3>
+        <p>Land Use / Land Cover Classifications are among the most iconic tasks for remote sensing scientists. They enable us to explore, map and monitor landscapes as well as better understand the impacts of for exampel natural hazards or anthropogenic influences.</p></div>
+       
+            <div class="graph-container">
+              <div class="div-name"></div>
+              <canvas id="graph_div_class_1_13"></canvas>
+            </div>
+
+            <div class="graph-container">
+              <div class="dist-name"></div>
+              <canvas id="graph_dist_class_1_13"></canvas>
+            </div>
+            
+            <div class="graph-container">
+              <div class="upazila-name"></div>
+              <canvas id="graph_upazila_class_1_13"></canvas>
+            </div>
+
+
+      <div>
+        <h3>Earthquake</h3>
+        <p>Land Use / Land Cover Classifications are among the most iconic tasks for remote sensing scientists. They enable us to explore, map and monitor landscapes as well as better understand the impacts of for exampel natural hazards or anthropogenic influences.</p></div>
+       
+            <div class="graph-container">
+              <div class="div-name"></div>
+              <canvas id="graph_div_class_1_14"></canvas>
+            </div>
+
+            <div class="graph-container">
+              <div class="dist-name"></div>
+              <canvas id="graph_dist_class_1_14"></canvas>
+            </div>
+
+            <div class="graph-container">
+              <div class="upazila-name"></div>
+              <canvas id="graph_upazila_class_1_14"></canvas>
+            </div>
+
+
+            
+            
+      <div>
+        <h3>Landslide susceptibility</h3>
+        <p>Land Use / Land Cover Classifications are among the most iconic tasks for remote sensing scientists. They enable us to explore, map and monitor landscapes as well as better understand the impacts of for exampel natural hazards or anthropogenic influences.</p></div>
+            <div class="graph-container">
+              <div class="div-name"></div>
+              <canvas id="graph_div_class_1_15"></canvas>
+            </div>
+            <div class="graph-container">
+              <div class="dist-name"></div>
+              <canvas id="graph_dist_class_1_15"></canvas>
+            </div>
+
+            <div class="graph-container">
+              <div class="upazila-name"></div>
+              <canvas id="graph_upazila_class_1_15"></canvas>
+            </div>
+
+
+      <div>
+        <h3>Maintenance</h3>
+        <p>Land Use / Land Cover Classifications are among the most iconic tasks for remote sensing scientists. They enable us to explore, map and monitor landscapes as well as better understand the impacts of for exampel natural hazards or anthropogenic influences.</p></div>
+            <div class="graph-container">
+              <div class="div-name"></div>
+              <canvas id="graph_div_class_12"></canvas>
+            </div>
+            <div class="graph-container">
+              <div class="dist-name"></div>
+              <canvas id="graph_dist_class_12"></canvas>
+            </div>
+            <div class="graph-container">
+              <div class="upazila-name"></div>
+              <canvas id="graph_upazila_class_12"></canvas>
+            </div>
+            
+            
+      
+    </div>
+    <!--div class="info1"><h2>Heading</h2></div-->
+    <div class="info2">
+      <div class="dashboard-item">
+                  <h2 id="adminName">Admin not selected</h2>
+                  <div class="stats">
+                    <div id="countDisplayDivisions"></div>
+                    <div id="countDisplayDistricts"></div>
+                    <div id="countDisplayUpezillas"></div>
+                    <div id="countDisplayedFeatures"> </div> 
+                  </div>
+                  <div>
+                    <h2 id="upezilla-name">Upazila not selected</h2>
+                    <div id="countUpezillaPowerlines" ></div>
+                  </div>
+                </div>
+    </div>
+    <div class="footer">
+      <p>&copy; 2023 Risk Assessment Dashboard</p>
+    </div>
+  </div>
+ 
     <script src="{%  static 'worldbank/js/main.js' %}"></script>
 
   
