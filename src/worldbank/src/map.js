@@ -140,17 +140,18 @@ const countDisplayDivisions = document.getElementById('countDisplayDivisions');
 
 
 /******************************************************************************************* */
-/*const geoserverUrl = [
-    './data/Admin_Boundaries_OSM_refined.geojson',
-    './data/bangladesh_powertowers_withdem_flood_lulc_cfocus_wind_eq_ls_up.geojson',
-    './data/Bangladesh_powertlines_withVoltage_ByExposure_upazilla.json'
-]*/
+const geoserverUrl = [
+    '/static/data/Admin_Boundaries_OSM_refined.geojson',
+    '/static/data/bangladesh_powertowers_withdem_flood_lulc_cfocus_wind_eq_ls_up.geojson',
+    '/static/data/Bangladesh_powertlines_withVoltage_ByExposure_upazilla.json'
+]
 
-const geoserverUrl =[
+
+/*const geoserverUrl =[
   'http://localhost/geoserver/geonode/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=geonode%3Aadmin_boundaries_osm_refined&outputFormat=application/json&srsname=EPSG:4326',
   'http://localhost/geoserver/geonode/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=geonode%3Abangladesh_powertowers_withdem_flood_lulc_cfocus_wind_eq_ls_up&outputFormat=application/json&srsname=EPSG:4326',
   
-]
+]*/
 
 
 function updateCountDisplay(element, count, label) {
@@ -513,3 +514,5 @@ document.getElementById('table').addEventListener('click', displayUpazilaInfo);
 map.on('click', function(event) {
     handleMapInfoBoxClick(event, map)
 });
+
+

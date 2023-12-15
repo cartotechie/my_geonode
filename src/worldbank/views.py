@@ -11,7 +11,7 @@ from django.views import View
 from django.urls import reverse
 # Create your views here.
 
-
+@login_required
 def mapView(request):
     # Your view's logic here
     return render(request, 'worldbank/map.html')
