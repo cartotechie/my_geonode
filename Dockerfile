@@ -1,5 +1,10 @@
 FROM ubuntu:22.04
 LABEL GeoNode development team
+# Set environment variables for proxy
+ENV http_proxy=http://gdfs02.iabg.de:3128
+ENV https_proxy=http://gdfs02.iabg.de:3128
+
+
 
 RUN mkdir -p /usr/src/my_geonode
 
